@@ -20,34 +20,47 @@ class Homework11Screen extends StatelessWidget {
         ),
       ),
       body: Center(
-        child: Container(
-          width: 300,
-          height: 150,
-          padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: Colors.blue,
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: const Align(
-            alignment: Alignment.bottomRight,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(Icons.star, color: Colors.yellow),
-                SizedBox(width: 10),
-                Text(
-                  'Привіт, Flutter!',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(width: 10),
-                Icon(Icons.star, color: Colors.yellow),
-              ],
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _buildCard(Colors.blue, Alignment.bottomRight),
+            const SizedBox(height: 8),
+            _buildCard(Colors.green, Alignment.bottomRight),
+            const SizedBox(height: 8),
+            _buildCard(Colors.red, Alignment.bottomRight),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCard(Color color, Alignment alignment) {
+    return Container(
+      width: 300,
+      height: 150,
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Align(
+        alignment: alignment,
+        child: const Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.star, color: Colors.yellow),
+            SizedBox(width: 10),
+            Text(
+              'Привіт, Flutter!',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
+            SizedBox(width: 10),
+            Icon(Icons.star, color: Colors.yellow),
+          ],
         ),
       ),
     );
