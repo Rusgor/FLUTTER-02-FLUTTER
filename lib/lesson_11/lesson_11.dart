@@ -21,13 +21,32 @@ class Homework11Screen extends StatelessWidget {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _buildCard(Colors.blue, Alignment.bottomRight),
+            // 1-й контейнер — тільки по висоті Expanded
+            Expanded(
+              child: SizedBox(
+                width: 300,
+                child: _buildCard(Colors.blue, Alignment.topLeft),
+              ),
+            ),
+
             const SizedBox(height: 8),
-            _buildCard(Colors.green, Alignment.bottomRight),
+
+            // 2-й контейнер
+            SizedBox(
+              width: 300,
+              height: 150,
+              child: _buildCard(Colors.green, Alignment.center),
+            ),
+
             const SizedBox(height: 8),
-            _buildCard(Colors.red, Alignment.bottomRight),
+
+            // 3-й контейнер
+            SizedBox(
+              width: 300,
+              height: 150,
+              child: _buildCard(Colors.red, Alignment.bottomRight),
+            ),
           ],
         ),
       ),
@@ -36,8 +55,6 @@ class Homework11Screen extends StatelessWidget {
 
   Widget _buildCard(Color color, Alignment alignment) {
     return Container(
-      width: 300,
-      height: 150,
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: color,
