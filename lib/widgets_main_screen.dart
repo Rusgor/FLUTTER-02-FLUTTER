@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lab/lesson_11/lesson_11.dart';
-import 'package:flutter_lab/features/widgets/presentation/screens/widgets_second_part_screen.dart';
+import 'package:flutter_02_flutter/lesson_11/lesson_11.dart';
+import 'package:flutter_02_flutter/features/widgets/presentation/screens/widgets_second_part_screen.dart';
 
 class WidgetsScreen extends StatelessWidget {
   const WidgetsScreen({super.key});
