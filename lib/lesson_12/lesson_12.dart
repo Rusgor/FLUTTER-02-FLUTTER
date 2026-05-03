@@ -10,18 +10,22 @@ class LessonTwelve extends StatefulWidget {
 class _LessonTwelveState extends State<LessonTwelve> {
   int rating = 4;
 
-  bool bakeryService = true;
-  bool bakeryAssortment = false;
+  bool bakeryServiceLike = false;
+  bool bakeryServiceDislike = false;
 
-  bool lavkaService = false;
-  bool lavkaAssortment = true;
+  bool bakeryAssortLike = false;
+  bool bakeryAssortDislike = false;
+
+  bool lavkaServiceLike = false;
+  bool lavkaServiceDislike = false;
+
+  bool lavkaAssortLike = false;
+  bool lavkaAssortDislike = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
-
-      /// 🔝 APP BAR
+      backgroundColor: const Color(0xFFEEF2FC),
       appBar: AppBar(
         title: const Text(
           'Оцінка візиту до магазину',
@@ -35,133 +39,104 @@ class _LessonTwelveState extends State<LessonTwelve> {
         elevation: 0,
         leading: const BackButton(color: Colors.black),
       ),
-
       body: Stack(
         children: [
-          SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(16, 16, 16, 100),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                /// ⭐ HEADER WITH STARS
-                Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.vertical(
-                      bottom: Radius.circular(24),
-                    ),
-                  ),
-                  child: Column(
-                    children: [
-                      /// ⭐⭐⭐⭐⭐ (тепер тут)
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: List.generate(5, (index) {
-                          return GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                rating = index + 1;
-                              });
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 4,
-                              ),
-                              child: Icon(
-                                Icons.star,
-                                size: 34,
-                                color: index < rating
-                                    ? const Color(0xFFFF8200)
-                                    : Colors.grey.shade300,
-                              ),
-                            ),
-                          );
-                        }),
-                      ),
-                    ],
-                  ),
-                ),
+          ListView(
+            padding: const EdgeInsets.only(bottom: 100),
+            children: [
+              _ratingBlock(),
+              const SizedBox(height: 16),
+              _sectionTitle(),
+              const SizedBox(height: 12),
 
-                const SizedBox(height: 16),
+              _departmentBlock(
+                title: 'Випічка',
+                serviceLike: bakeryServiceLike,
+                serviceDislike: bakeryServiceDislike,
+                assortLike: bakeryAssortLike,
+                assortDislike: bakeryAssortDislike,
+                onServiceLike: () {
+                  setState(() {
+                    bakeryServiceLike = !bakeryServiceLike;
+                    bakeryServiceDislike = false;
+                  });
+                },
+                onServiceDislike: () {
+                  setState(() {
+                    bakeryServiceDislike = !bakeryServiceDislike;
+                    bakeryServiceLike = false;
+                  });
+                },
+                onAssortLike: () {
+                  setState(() {
+                    bakeryAssortLike = !bakeryAssortLike;
+                    bakeryAssortDislike = false;
+                  });
+                },
+                onAssortDislike: () {
+                  setState(() {
+                    bakeryAssortDislike = !bakeryAssortDislike;
+                    bakeryAssortLike = false;
+                  });
+                },
+              ),
 
-                /// 🧾 TEXT FRAME (без зірок)
-                Container(
-                  height: 50,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(24),
-                  ),
-                  child: const Text(
-                    'Яку оціночку поставите відділам?',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color(0xFF13131E),
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
+              const SizedBox(height: 16),
 
-                const SizedBox(height: 24),
+              _departmentBlock(
+                title: 'Лавка традицій',
+                serviceLike: lavkaServiceLike,
+                serviceDislike: lavkaServiceDislike,
+                assortLike: lavkaAssortLike,
+                assortDislike: lavkaAssortDislike,
+                onServiceLike: () {
+                  setState(() {
+                    lavkaServiceLike = !lavkaServiceLike;
+                    lavkaServiceDislike = false;
+                  });
+                },
+                onServiceDislike: () {
+                  setState(() {
+                    lavkaServiceDislike = !lavkaServiceDislike;
+                    lavkaServiceLike = false;
+                  });
+                },
+                onAssortLike: () {
+                  setState(() {
+                    lavkaAssortLike = !lavkaAssortLike;
+                    lavkaAssortDislike = false;
+                  });
+                },
+                onAssortDislike: () {
+                  setState(() {
+                    lavkaAssortDislike = !lavkaAssortDislike;
+                    lavkaAssortLike = false;
+                  });
+                },
+              ),
 
-                /// 🥐 ВИПІЧКА
-                _DepartmentSection(
-                  title: 'Випічка',
-                  serviceValue: bakeryService,
-                  assortmentValue: bakeryAssortment,
-                  onServiceTap: (val) => setState(() => bakeryService = val),
-                  onAssortmentTap: (val) =>
-                      setState(() => bakeryAssortment = val),
-                ),
+              const SizedBox(height: 16),
 
-                const SizedBox(height: 16),
-
-                /// 🧀 ЛАВКА
-                _DepartmentSection(
-                  title: 'Лавка традицій',
-                  serviceValue: lavkaService,
-                  assortmentValue: lavkaAssortment,
-                  onServiceTap: (val) => setState(() => lavkaService = val),
-                  onAssortmentTap: (val) =>
-                      setState(() => lavkaAssortment = val),
-                ),
-
-                const SizedBox(height: 24),
-
-                /// ✍️ ДОДАТИ
-                const Text(
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Text(
                   'Є що додати?',
+                  textAlign: TextAlign.left,
                   style: TextStyle(
                     color: Color(0xFF202124),
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
+              ),
 
-                const SizedBox(height: 12),
+              const SizedBox(height: 12),
 
-                Container(
-                  height: 64,
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: const Color(0x14000000)),
-                  ),
-                  child: const TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Поділіться загальним враженням',
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              _textField('Поділіться загальним враженням'),
+            ],
           ),
 
-          /// 🔵 BUTTON
+          // Sticky button
           Positioned(
             bottom: 0,
             left: 0,
@@ -169,19 +144,18 @@ class _LessonTwelveState extends State<LessonTwelve> {
             child: Container(
               padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
               color: Colors.white,
-              child: SizedBox(
+              child: Container(
                 height: 48,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF1135BA),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(24),
-                    ),
-                  ),
-                  onPressed: () {},
-                  child: const Text(
-                    'Надіслати',
-                    style: TextStyle(color: Colors.white),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF1135BA),
+                  borderRadius: BorderRadius.circular(24),
+                ),
+                alignment: Alignment.center,
+                child: const Text(
+                  'Надіслати',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
@@ -191,89 +165,109 @@ class _LessonTwelveState extends State<LessonTwelve> {
       ),
     );
   }
-}
 
-/// 🔽 SECTION
-class _DepartmentSection extends StatelessWidget {
-  final String title;
-  final bool serviceValue;
-  final bool assortmentValue;
-  final Function(bool) onServiceTap;
-  final Function(bool) onAssortmentTap;
-
-  const _DepartmentSection({
-    required this.title,
-    required this.serviceValue,
-    required this.assortmentValue,
-    required this.onServiceTap,
-    required this.onAssortmentTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: const TextStyle(
-            color: Color(0xFF13131E),
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        const SizedBox(height: 12),
-
-        _ServiceRow(
-          title: 'Обслуговування',
-          value: serviceValue,
-          onTap: onServiceTap,
-        ),
-
-        const SizedBox(height: 8),
-
-        _ServiceRow(
-          title: 'Асортимент',
-          value: assortmentValue,
-          onTap: onAssortmentTap,
-        ),
-
-        const SizedBox(height: 8),
-
-        Container(
-          height: 64,
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: const Color(0x14000000)),
-          ),
-          child: const TextField(
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: 'Розкажіть докладніше',
+  Widget _ratingBlock() {
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.vertical(bottom: Radius.circular(24)),
+      ),
+      padding: const EdgeInsets.all(16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: List.generate(5, (index) {
+          return GestureDetector(
+            onTap: () => setState(() => rating = index + 1),
+            child: Icon(
+              index < rating ? Icons.star : Icons.star_border,
+              color: const Color(0xFFFF8200),
+              size: 36,
             ),
-          ),
-        ),
-      ],
+          );
+        }),
+      ),
     );
   }
-}
 
-/// 👍 👎 (виправлено порядок)
-class _ServiceRow extends StatelessWidget {
-  final String title;
-  final bool value;
-  final Function(bool) onTap;
+  Widget _sectionTitle() {
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16),
+      child: Text(
+        'Яку оціночку поставите відділам?',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          color: Color(0xFF13131E),
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+    );
+  }
 
-  const _ServiceRow({
-    required this.title,
-    required this.value,
-    required this.onTap,
-  });
+  Widget _departmentBlock({
+    required String title,
+    required bool serviceLike,
+    required bool serviceDislike,
+    required bool assortLike,
+    required bool assortDislike,
+    required VoidCallback onServiceLike,
+    required VoidCallback onServiceDislike,
+    required VoidCallback onAssortLike,
+    required VoidCallback onAssortDislike,
+  }) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(24),
+      ),
+      padding: const EdgeInsets.all(16),
+      margin: const EdgeInsets.symmetric(horizontal: 0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              color: Color(0xFF13131E),
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(height: 12),
 
-  @override
-  Widget build(BuildContext context) {
+          _likeRow(
+            title: 'Обслуговування',
+            like: serviceLike,
+            dislike: serviceDislike,
+            onLike: onServiceLike,
+            onDislike: onServiceDislike,
+          ),
+
+          const SizedBox(height: 8),
+
+          _likeRow(
+            title: 'Асортимент',
+            like: assortLike,
+            dislike: assortDislike,
+            onLike: onAssortLike,
+            onDislike: onAssortDislike,
+          ),
+
+          const SizedBox(height: 12),
+
+          _textField('Розкажіть докладніше'),
+        ],
+      ),
+    );
+  }
+
+  Widget _likeRow({
+    required String title,
+    required bool like,
+    required bool dislike,
+    required VoidCallback onLike,
+    required VoidCallback onDislike,
+  }) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
@@ -288,19 +282,34 @@ class _ServiceRow extends StatelessWidget {
 
           Row(
             children: [
-              /// 👎 ТЕПЕР ЗЛІВА
-              _CircleButton(
-                icon: Icons.thumb_down,
-                active: !value,
-                onTap: () => onTap(false),
+              GestureDetector(
+                onTap: onDislike,
+                child: CircleAvatar(
+                  radius: 16,
+                  backgroundColor: dislike
+                      ? const Color(0xFF2358D1)
+                      : Colors.grey.shade300,
+                  child: const Icon(
+                    Icons.thumb_down,
+                    color: Colors.white,
+                    size: 16,
+                  ),
+                ),
               ),
               const SizedBox(width: 8),
-
-              /// 👍 СПРАВА
-              _CircleButton(
-                icon: Icons.thumb_up,
-                active: value,
-                onTap: () => onTap(true),
+              GestureDetector(
+                onTap: onLike,
+                child: CircleAvatar(
+                  radius: 16,
+                  backgroundColor: like
+                      ? const Color(0xFF2358D1)
+                      : Colors.grey.shade300,
+                  child: const Icon(
+                    Icons.thumb_up,
+                    color: Colors.white,
+                    size: 16,
+                  ),
+                ),
               ),
             ],
           ),
@@ -308,32 +317,19 @@ class _ServiceRow extends StatelessWidget {
       ),
     );
   }
-}
 
-/// 🔵 BUTTON
-class _CircleButton extends StatelessWidget {
-  final IconData icon;
-  final bool active;
-  final VoidCallback onTap;
-
-  const _CircleButton({
-    required this.icon,
-    required this.active,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          color: active ? const Color(0xFF2358D1) : Colors.grey.shade300,
-          borderRadius: BorderRadius.circular(32),
-        ),
-        child: Icon(icon, size: 18, color: Colors.white),
+  Widget _textField(String hint) {
+    return Container(
+      height: 64,
+      margin: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      alignment: Alignment.centerLeft,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.grey),
+        color: Colors.white,
       ),
+      child: Text(hint, style: const TextStyle(color: Colors.grey)),
     );
   }
 }
