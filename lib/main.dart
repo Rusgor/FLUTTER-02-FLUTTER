@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lab/widgets_main_screen.dart';
+import 'package:flutter_02_flutter/widgets_main_screen.dart';
 
 void main() {
   runApp(const FlutterWidgetsApp());
@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute<Widget>(
-                  builder: (context) => const WidgetsScreen(),
+                  builder: (context) => WidgetsScreen(),
                 ),
               ),
             ),

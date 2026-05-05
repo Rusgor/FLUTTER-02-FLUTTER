@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lab/features/widgets/presentation/screens/widgets_first_part_screen.dart';
-import 'package:flutter_lab/features/widgets/presentation/widgets/part2/custom_widgets_example_screen.dart';
-import 'package:flutter_lab/features/widgets/presentation/widgets/part2/gesture_example_screen.dart';
-import 'package:flutter_lab/features/widgets/presentation/widgets/part2/images_example_screen.dart';
-import 'package:flutter_lab/features/widgets/presentation/widgets/part2/text_field_example_screen.dart';
-import 'package:flutter_lab/features/widgets/presentation/widgets/part2/widget_types_example_screen.dart';
+import 'package:flutter_02_flutter/features/widgets/presentation/screens/widgets_first_part_screen.dart';
+import 'package:flutter_02_flutter/features/widgets/presentation/widgets/part2/images_example_screen.dart';
+import 'package:flutter_02_flutter/features/widgets/presentation/widgets/part2/gesture_example_screen.dart';
+import 'package:flutter_02_flutter/features/widgets/presentation/widgets/part2/text_field_example_screen.dart';
+import 'package:flutter_02_flutter/features/widgets/presentation/widgets/part2/widget_types_example_screen.dart';
+import 'package:flutter_02_flutter/features/widgets/presentation/widgets/part2/custom_widgets_example_screen.dart';
 
 class WidgetsSecondPartScreen extends StatelessWidget {
   const WidgetsSecondPartScreen({super.key});
@@ -20,10 +20,8 @@ class WidgetsSecondPartScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         children: [
           WidgetExampleCard(
-            title: 'Custom Widgets',
-            description:
-                'Learn how to create reusable custom widgets to avoid code '
-                'duplication and improve maintainability.',
+            title: 'Lesson_12',
+            description: 'Домашнє завдання 8: Сторінка по макету з Figma',
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute<Widget>(
