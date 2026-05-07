@@ -167,16 +167,27 @@ class TrainingExample4 extends StatelessWidget {
 // Подумайте, які розміри будуть у синього та червоного контейнерів.
 // Чи є різниця, якщо обгорнути контейнери в Padding чи передати параметри
 // margin чи передати padding?
-
+// Виконання/відповідь:
+// Жовтий: 100 x 100
+// Синій: 100 + 16 + 16= 132 x 132
+// Червоний: 132 + 16 + 16= 164 x 164
+// Так різниця є звісно -
+// padding: Відступ ВНУТРІ контейнера. Він збільшує розмір контейнера і зменшує доступне місце для child
+// margin: Відступ ЗЗОВНІ контейнера. Він не впливає на child size та створює зовнішній spacing
 class TrainingExample5 extends StatelessWidget {
   const TrainingExample5({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.red,
+    return Center(
       child: Container(
-        color: Colors.blue,
-        child: Container(color: Colors.yellow, height: 100, width: 100),
+        padding: const EdgeInsets.all(16),
+        color: Colors.red,
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          color: Colors.blue,
+          child: Container(width: 100, height: 100, color: Colors.yellow),
+        ),
       ),
     );
   }
