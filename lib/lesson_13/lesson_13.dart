@@ -113,15 +113,21 @@ class TrainingExample2 extends StatelessWidget {
 // через alignment: Alignment(x, y).
 // Подивіться як вирівнювання працює зараз і який віджет
 // для цього використовується. В чому різниця з віджетом Align?
-
+// Виконання:
 class TrainingExample3 extends StatelessWidget {
   const TrainingExample3({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.yellow,
-      child: Center(
-        child: Container(color: Colors.green, width: 100, height: 100),
+      child: const Align(
+        alignment: Alignment(1, -1),
+        child: SizedBox(
+          width: 100,
+          height: 100,
+          child: ColoredBox(color: Colors.green),
+        ),
       ),
     );
   }
