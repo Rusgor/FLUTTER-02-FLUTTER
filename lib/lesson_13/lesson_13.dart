@@ -92,14 +92,16 @@ class TrainingExample1 extends StatelessWidget {
 // width: double.infinity в unbounded context спричинить крах.
 // Завдання: виправте так, щоб контейнер був видимий і займав все доступне
 // місце по ширині
+// Виконання:
 class TrainingExample2 extends StatelessWidget {
   const TrainingExample2({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Container(width: 100, height: 200, color: Colors.green),
-        Container(width: double.infinity, height: 200, color: Colors.blue),
+        Expanded(child: Container(height: 200, color: Colors.blue)),
       ],
     );
   }
