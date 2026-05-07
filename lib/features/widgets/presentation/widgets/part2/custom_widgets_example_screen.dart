@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_02_flutter/lesson_12/lesson_12.dart';
+import 'package:flutter_02_flutter/lesson_13/lesson_13.dart';
 
 class CustomWidgetsExampleScreen extends StatelessWidget {
   CustomWidgetsExampleScreen({super.key});
@@ -24,7 +25,9 @@ class CustomWidgetsExampleScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            //  LESSON 12 BUTTON
+            // ============================
+            // LESSON 12 BUTTON
+            // ============================
             Container(
               margin: const EdgeInsets.only(bottom: 12),
               child: Material(
@@ -56,7 +59,45 @@ class CustomWidgetsExampleScreen extends StatelessWidget {
               ),
             ),
 
-            //  ITEMS
+            // ============================
+            // LESSON 13 BUTTON
+            // ============================
+            Container(
+              margin: const EdgeInsets.only(bottom: 12),
+              child: Material(
+                color: Colors.orange.shade100,
+                borderRadius: BorderRadius.circular(12),
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(12),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const WidgetConstrainsTrainingScreen(),
+                      ),
+                    );
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 18),
+                    child: Center(
+                      child: Text(
+                        'Lesson 13',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w800,
+                          color: Color(0xFFE65100),
+                          letterSpacing: 0.5,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+            // ============================
+            // ITEMS
+            // ============================
             ...items.map(
               (item) => CardItem(
                 title: item['title'] ?? '',

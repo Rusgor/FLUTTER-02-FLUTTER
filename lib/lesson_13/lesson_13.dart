@@ -65,15 +65,23 @@ class _WidgetConstrainsTrainingScreenState
 // Очікуваний результат: червоний квадрат розміром 150x150 та розміщений у
 // правому верхньому куті контейнера
 // Зараз: червоний квадрат займає все доступне місце і перекриває зелений
+// Виконання:
 class TrainingExample1 extends StatelessWidget {
   const TrainingExample1({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 300,
       width: 300,
       color: Colors.green,
-      child: Container(width: 150, height: 150, color: Colors.red),
+      child: const Align(
+        alignment: Alignment.topRight,
+        child: ColoredBox(
+          color: Colors.red,
+          child: SizedBox(width: 150, height: 150),
+        ),
+      ),
     );
   }
 }
