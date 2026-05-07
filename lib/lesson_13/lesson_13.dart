@@ -140,15 +140,20 @@ class TrainingExample3 extends StatelessWidget {
 // Зелений контейнер видно навколо помаранчевого
 // (як рамка/border в 10 пікселів) - але фактичний розмір зеленого не має
 // стати більшим ніж 200 на 200.
-
+// Виконання:
 class TrainingExample4 extends StatelessWidget {
   const TrainingExample4({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.green,
-
-      child: Container(color: Colors.orange, height: 200, width: 200),
+    return Center(
+      child: Container(
+        width: 200,
+        height: 200,
+        padding: const EdgeInsets.all(10),
+        color: Colors.green,
+        child: Container(color: Colors.orange),
+      ),
     );
   }
 }
