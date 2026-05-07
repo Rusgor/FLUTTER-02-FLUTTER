@@ -199,14 +199,22 @@ class TrainingExample5 extends StatelessWidget {
 // бо не задано явних розмірів.
 // Завдання: виправте, задавши розмір контейнеру та вирівнявши текст.
 // Звертаю увагу, що сам текст теж має бути вирівняний по центру.
+// Виконання:
 class TrainingExample6 extends StatelessWidget {
   const TrainingExample6({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
+        width: 200,
+        height: 200,
         color: Colors.orange,
-        child: const Text('Lorem ipsum dolor sit amet, consectetur'),
+        alignment: Alignment.center,
+        child: const Text(
+          'Lorem ipsum dolor sit amet, consectetur',
+          textAlign: TextAlign.center,
+        ),
       ),
     );
   }
