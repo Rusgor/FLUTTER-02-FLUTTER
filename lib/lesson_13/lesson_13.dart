@@ -225,17 +225,23 @@ class TrainingExample6 extends StatelessWidget {
 // а під ним — список елементів, що займає решту екрану.
 // Зараз: є overflow помилка, бо ListView отримує unbounded height
 // від Column і намагається бути нескінченним.
-
+// Виконання:
 class TrainingExample7 extends StatelessWidget {
   const TrainingExample7({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Container(color: Colors.orange, height: 100, width: 100),
-        ListView.builder(
-          itemCount: 50,
-          itemBuilder: (context, index) => Text('Item $index'),
+
+        Expanded(
+          child: ListView.builder(
+            itemCount: 50,
+            itemBuilder: (context, index) {
+              return Text('Item $index');
+            },
+          ),
         ),
       ],
     );
