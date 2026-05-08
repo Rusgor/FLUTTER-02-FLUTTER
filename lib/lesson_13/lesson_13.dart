@@ -322,19 +322,20 @@ class TrainingExample10 extends StatelessWidget {
 // Task 11:
 // Очікуваний результат: три кольорові блоки в Row,
 // червоний — фіксований 80px, зелений і синій ділять решту порівну.
-
+// Виконання:
 class TrainingExample11 extends StatelessWidget {
   const TrainingExample11({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Row(
-        children: [
-          Expanded(child: Container(color: Colors.red, width: 80, height: 100)),
-          Expanded(child: Container(color: Colors.green, height: 100)),
-          Expanded(child: Container(color: Colors.blue, height: 100)),
-        ],
-      ),
+    return Row(
+      children: [
+        Container(color: Colors.red, width: 80, height: 100),
+
+        Expanded(child: Container(color: Colors.green, height: 100)),
+
+        Expanded(child: Container(color: Colors.blue, height: 100)),
+      ],
     );
   }
 }
