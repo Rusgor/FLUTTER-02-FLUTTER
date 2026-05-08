@@ -294,21 +294,27 @@ class TrainingExample9 extends StatelessWidget {
 // Очікуваний результат: помаранчевий контейнер 100x100 зліва,
 // а праворуч — список елементів, що займає решту ширини.
 // Зараз: є помилка, бо ListView отримує unbounded width від Row.
-
+// Виконання:
 class TrainingExample10 extends StatelessWidget {
   const TrainingExample10({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Row(
-        children: [
-          Container(color: Colors.orange, height: 100, width: 100),
-          ListView.builder(
-            itemCount: 20,
-            itemBuilder: (context, index) => Text('Item $index'),
+    return Row(
+      children: [
+        Container(color: Colors.orange, width: 100, height: 100),
+        Expanded(
+          child: SizedBox(
+            height: 100,
+            child: ListView.builder(
+              itemCount: 20,
+              itemBuilder: (context, index) {
+                return Text('Item $index');
+              },
+            ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
