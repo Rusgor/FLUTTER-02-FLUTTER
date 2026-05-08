@@ -352,24 +352,35 @@ class TrainingExample11 extends StatelessWidget {
 
 // P.S. Це досить складне і не зовсім очевидне завдання.
 // Підказка: LayoutBuilder може допомогти.
-
+// Виконання:
 class TrainingExample12 extends StatelessWidget {
   const TrainingExample12({super.key});
+
   @override
   Widget build(BuildContext context) {
-    const redContainerWidth = 100.0;
+    const redContainerWidth = 750.0;
 
-    return Row(
-      children: [
-        Container(
-          color: Colors.red,
-          height: 100,
-          width: redContainerWidth,
-          child: const Text('Hi'),
-        ),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final screenWidth = constraints.maxWidth;
 
-        Expanded(child: Container(color: Colors.green, height: 100)),
-      ],
+        final isRedFullWidth = redContainerWidth >= screenWidth;
+
+        return Row(
+          children: [
+            Container(
+              color: Colors.red,
+              height: 100,
+              width: isRedFullWidth ? screenWidth : redContainerWidth,
+              alignment: Alignment.center,
+              child: const Text('Hi', style: TextStyle(color: Colors.white)),
+            ),
+
+            if (!isRedFullWidth)
+              Expanded(child: Container(color: Colors.green, height: 100)),
+          ],
+        );
+      },
     );
   }
 }
