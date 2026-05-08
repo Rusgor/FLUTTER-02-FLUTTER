@@ -389,9 +389,10 @@ class TrainingExample12 extends StatelessWidget {
 // Очікуваний результат: текст масштабується під розмір контейнера 200x50,
 // без зменшення розміру тексту через fontSize
 // Зараз: частину тексту не видно, бо fontSize: 30 занадто великий.
-
+// Виконання:
 class TrainingExample13 extends StatelessWidget {
   const TrainingExample13({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -399,9 +400,13 @@ class TrainingExample13 extends StatelessWidget {
         width: 200,
         height: 50,
         color: Colors.amber,
-        child: const Text(
-          'Дуже довгий текст який не поміщається',
-          style: TextStyle(fontSize: 30),
+        alignment: Alignment.center,
+        child: const FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(
+            'Дуже довгий текст який не поміщається',
+            style: TextStyle(fontSize: 30),
+          ),
         ),
       ),
     );
