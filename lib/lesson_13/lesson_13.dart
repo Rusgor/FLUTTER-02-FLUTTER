@@ -558,9 +558,10 @@ class TrainingExample18 extends StatelessWidget {
 // батьківського 200x200 без помилок overflow. Використовуйте OverflowBox.
 // Зверніть увагу, яка зміна параметрів потрібна для OverflowBox для
 // коректного відображення відповідно до вимог
-
+// Виконання:
 class TrainingExample19 extends StatelessWidget {
   const TrainingExample19({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -568,8 +569,17 @@ class TrainingExample19 extends StatelessWidget {
         color: Colors.blue,
         width: 200,
         height: 200,
-        child: UnconstrainedBox(
-          child: Container(color: Colors.green, width: 300, height: 100),
+        child: const OverflowBox(
+          minWidth: 0,
+          minHeight: 0,
+          maxWidth: double.infinity,
+          maxHeight: double.infinity,
+          alignment: Alignment.center,
+          child: SizedBox(
+            width: 300,
+            height: 100,
+            child: ColoredBox(color: Colors.green),
+          ),
         ),
       ),
     );
