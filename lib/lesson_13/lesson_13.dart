@@ -525,7 +525,7 @@ class TrainingExample17 extends StatelessWidget {
 // не розтягнутий батьком.
 // Спробуйте спочатку використати UnconstrainedBox - потім
 // OverflowBox. Також використайте їх різні параметри.
-//Виконання_1 через використання UnconstrainedBox:
+//Виконання_2 через використання OverflowBox:
 class TrainingExample18 extends StatelessWidget {
   const TrainingExample18({super.key});
 
@@ -536,7 +536,12 @@ class TrainingExample18 extends StatelessWidget {
         color: Colors.blue,
         width: 200,
         height: 200,
-        child: const UnconstrainedBox(
+        child: const OverflowBox(
+          minWidth: 0,
+          minHeight: 0,
+          maxWidth: double.infinity,
+          maxHeight: double.infinity,
+          alignment: Alignment.center,
           child: SizedBox(
             width: 50,
             height: 50,
