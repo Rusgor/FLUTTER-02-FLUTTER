@@ -465,7 +465,18 @@ class TrainingExample15 extends StatelessWidget {
 // Тут просто розберіться - чому не застосовуються constraints ConstrainedBox?
 
 // Запишіть відповідь у коментарі до коду нижче
-// Відповідь: ConstrainedBox не застосовуються, тому що ...
+// Відповідь:
+// ConstrainedBox не застосовує свої constraints,
+// тому що батьківський SizedBox вже задав жорсткі constraints
+// width: 100 і height: 100.
+//
+// У Flutter constraints йдуть зверху вниз.
+// Дочірній віджет не може перевизначити constraints,
+// які вже задав parent widget.
+//
+// Тому ConstrainedBox отримує вже обмежений простір 100x100
+// і не може збільшити його до 300x300
+
 class TrainingExample16 extends StatelessWidget {
   const TrainingExample16({super.key});
   @override
