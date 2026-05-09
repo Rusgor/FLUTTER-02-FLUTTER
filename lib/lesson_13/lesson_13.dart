@@ -673,7 +673,12 @@ class TrainingExample21 extends StatelessWidget {
 // Task 22:
 // Чому LimitedBox не впливає на розмір зеленого контейнера?
 
-// Відповідь: ...
+// // Відповідь: LimitedBox працює лише тоді,
+// коли отримує unbounded constraints від батьківського віджета.
+//
+// У цьому випадку constraints bounded, тому maxHeight: 80 не застосовується,
+// і зелений контейнер займає свій природний розмір.
+
 class TrainingExample22 extends StatelessWidget {
   const TrainingExample22({super.key});
   @override
