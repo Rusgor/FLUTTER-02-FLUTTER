@@ -629,7 +629,16 @@ class TrainingExample20 extends StatelessWidget {
 // На цьому прикладі розгляньте, чому в другому Column контейнер з зеленим
 // кольором не обмежується батьком LimitedBox.
 
-// Відповідь: ...
+// Відповідь: LimitedBox застосовує обмеження лише тоді,
+// коли отримує unbounded constraints від батьківського віджета.
+//
+// У першому випадку Column передає unbounded height,
+// тому maxHeight: 50 спрацьовує.
+//
+// У другому випадку SizedBox(height: 100)
+// передає bounded constraints,
+// тому LimitedBox ігнорує свої обмеження
+
 class TrainingExample21 extends StatelessWidget {
   const TrainingExample21({super.key});
   @override
