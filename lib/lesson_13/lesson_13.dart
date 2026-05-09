@@ -420,9 +420,10 @@ class TrainingExample13 extends StatelessWidget {
 // Зараз: Текст "Flutter" збільшується відповідно до розміру контейнеру.
 // Ми хочемо, щоб якщо розмір тексту не потребує зменшення для відображення -
 // він має залишатися свого розміру
-
+// Виконання:
 class TrainingExample14 extends StatelessWidget {
   const TrainingExample14({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -430,7 +431,9 @@ class TrainingExample14 extends StatelessWidget {
         width: 200,
         height: 100,
         color: Colors.lightBlue.shade100,
+        alignment: Alignment.center,
         child: const FittedBox(
+          fit: BoxFit.scaleDown,
           child: Text('Flutter', style: TextStyle(fontSize: 30)),
         ),
       ),
