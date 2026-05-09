@@ -446,13 +446,17 @@ class TrainingExample14 extends StatelessWidget {
 // навіть якщо child менший. Розмір контейнеру не змінювати. Мінімальний розмір
 // задати іншим віджетом.
 // Зараз: контейнер 50x50, бо Container має явні width/height,
-
+// Виконання:
 class TrainingExample15 extends StatelessWidget {
   const TrainingExample15({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(color: Colors.yellow, width: 50, height: 50),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(minWidth: 200, minHeight: 200),
+        child: Container(color: Colors.yellow, width: 50, height: 50),
+      ),
     );
   }
 }
