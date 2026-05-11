@@ -20,8 +20,10 @@ class WidgetsSecondPartScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         children: [
           WidgetExampleCard(
-            title: 'Lesson_12',
-            description: 'Домашнє завдання 8: Сторінка по макету з Figma',
+            title: 'ДОМАШНІ ЗАВДАННЯ',
+            description:
+                'Сторінка по макету з Figma (lesson_12);\n'
+                'Взаємодія віджетів та компонування (lesson_13)',
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute<Widget>(
