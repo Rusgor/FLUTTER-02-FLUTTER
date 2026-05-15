@@ -25,7 +25,11 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter Lab'),
+        centerTitle: true,
+        title: const Text(
+          'Flutter Lab',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         backgroundColor: Colors.blue.shade100,
       ),
       body: SingleChildScrollView(
@@ -34,6 +38,13 @@ class HomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             FeatureCard(title: 'Widgets', onTap: () => context.go('/widgets')),
+
+            const SizedBox(height: 12),
+
+            FeatureCard(
+              title: 'HW-18. State managment',
+              onTap: () => context.go('/state-management'),
+            ),
           ],
         ),
       ),
@@ -65,7 +76,7 @@ class FeatureCard extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
+              const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
             ],
           ),
         ),

@@ -4,6 +4,9 @@ import 'package:flutter_02_flutter/widgets_main_screen.dart';
 import 'package:flutter_02_flutter/lesson_11/lesson_11.dart';
 import 'package:flutter_02_flutter/lesson_12/lesson_12.dart';
 import 'package:flutter_02_flutter/lesson_13/lesson_13.dart';
+import 'package:flutter_02_flutter/lesson_18/state_managment_base_screen.dart';
+import 'package:flutter_02_flutter/lesson_18/homework_bloc/homework_bloc_screen.dart';
+import 'package:flutter_02_flutter/lesson_18/homework_cubit/homework_cubit_screen.dart';
 import 'package:flutter_02_flutter/features/widgets/presentation/widgets/part1/row_example_screen.dart';
 import 'package:flutter_02_flutter/features/widgets/presentation/screens/widgets_first_part_screen.dart';
 import 'package:flutter_02_flutter/features/widgets/presentation/widgets/part1/text_example_screen.dart';
@@ -81,6 +84,21 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/lesson13',
       builder: (context, state) => const WidgetConstrainsTrainingScreen(),
+    ),
+
+    GoRoute(
+      path: '/state-management',
+      builder: (context, state) => const StateManagmentBaseScreen(),
+    ),
+
+    GoRoute(
+      path: '/homework-cubit',
+      builder: (context, state) => const HomeworkCubitScreen(),
+    ),
+
+    GoRoute(
+      path: '/homework-bloc',
+      builder: (context, state) => const HomeworkBlocScreen(),
     ),
 
     // =========================
