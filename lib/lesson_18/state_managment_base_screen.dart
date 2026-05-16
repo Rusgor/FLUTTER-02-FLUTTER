@@ -11,7 +11,7 @@ class StateManagmentBaseScreen extends StatelessWidget {
         centerTitle: true,
         title: const Text(
           'State Management',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red),
         ),
       ),
 
@@ -22,14 +22,42 @@ class StateManagmentBaseScreen extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () => context.go('/homework-cubit'),
-              child: const Text('Cubit Example'),
+              child: const Text(
+                'Cubit Example',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue,
+                  shadows: [
+                    Shadow(
+                      color: Colors.amber,
+                      offset: Offset(1.5, 1.5),
+                      blurRadius: 0,
+                    ),
+                  ],
+                ),
+              ),
             ),
 
             const SizedBox(height: 16),
 
             ElevatedButton(
               onPressed: () => context.go('/homework-bloc'),
-              child: const Text('Bloc Example'),
+              child: const Text(
+                'Bloc Example',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue,
+                  shadows: [
+                    Shadow(
+                      color: Colors.amber,
+                      offset: Offset(1.5, 1.5),
+                      blurRadius: 0,
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),

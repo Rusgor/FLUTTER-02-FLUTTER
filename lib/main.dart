@@ -42,7 +42,7 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 12),
 
             FeatureCard(
-              title: 'HW-18. State managment',
+              title: 'HW-18. State managment (Lesson 18)',
               onTap: () => context.go('/state-management'),
             ),
           ],
