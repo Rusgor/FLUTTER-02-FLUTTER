@@ -37,13 +37,20 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            FeatureCard(title: 'Widgets', onTap: () => context.go('/widgets')),
+            FeatureCard(
+              title: 'Widgets',
+              onTap: () => context.push('/widgets'),
+            ),
 
             const SizedBox(height: 12),
 
             FeatureCard(
               title: 'HW-18. State managment (Lesson 18)',
-              onTap: () => context.go('/state-management'),
+              onTap: () => context.push('/state-management'),
+            ),
+            FeatureCard(
+              title: 'HW-19. Rate screen (Lesson 19)',
+              onTap: () => context.push('/rate-app'),
             ),
           ],
         ),
