@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_02_flutter/lesson_12/lesson_12.dart';
-import 'package:flutter_02_flutter/lesson_13/lesson_13.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomWidgetsExampleScreen extends StatelessWidget {
   CustomWidgetsExampleScreen({super.key});
@@ -35,12 +34,10 @@ class CustomWidgetsExampleScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 child: InkWell(
                   borderRadius: BorderRadius.circular(12),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => const LessonTwelve()),
-                    );
-                  },
+
+                  // GO ROUTER
+                  onTap: () => context.go('/lesson12'),
+
                   child: const Padding(
                     padding: EdgeInsets.symmetric(vertical: 18),
                     child: Center(
@@ -69,14 +66,10 @@ class CustomWidgetsExampleScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 child: InkWell(
                   borderRadius: BorderRadius.circular(12),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => const WidgetConstrainsTrainingScreen(),
-                      ),
-                    );
-                  },
+
+                  // GO ROUTER
+                  onTap: () => context.go('/lesson13'),
+
                   child: const Padding(
                     padding: EdgeInsets.symmetric(vertical: 18),
                     child: Center(
@@ -147,9 +140,13 @@ class CardItem extends StatelessWidget {
             title,
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
+
           const SizedBox(height: 8),
+
           Text(desc),
+
           const SizedBox(height: 8),
+
           Text(
             price,
             style: const TextStyle(

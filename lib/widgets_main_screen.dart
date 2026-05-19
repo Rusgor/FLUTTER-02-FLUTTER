@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_02_flutter/lesson_11/lesson_11.dart';
-import 'package:flutter_02_flutter/features/widgets/presentation/screens/widgets_second_part_screen.dart';
+import 'package:go_router/go_router.dart';
 
 class WidgetsScreen extends StatelessWidget {
   const WidgetsScreen({super.key});
@@ -22,12 +21,9 @@ class WidgetsScreen extends StatelessWidget {
               description:
                   'Container, SizedBox, Padding, Align, Center, Text, Row, '
                   'Column, Expanded, Buttons, Scroll',
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute<Widget>(
-                  builder: (context) => const Homework11Screen(),
-                ),
-              ),
+
+              // GO ROUTER
+              onTap: () => context.go('/lesson11'),
             ),
 
             NavigationCard(
@@ -36,12 +32,9 @@ class WidgetsScreen extends StatelessWidget {
                   'Custom Widgets, Stateless vs Stateful Widgets, '
                   'Gesture Detector & InkWel, '
                   'TextFields & TextFormFields',
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute<Widget>(
-                  builder: (context) => const WidgetsSecondPartScreen(),
-                ),
-              ),
+
+              // GO ROUTER
+              onTap: () => context.go('/widgets-part-2'),
             ),
           ],
         ),
@@ -91,12 +84,16 @@ class NavigationCard extends StatelessWidget {
                   color: Colors.black87,
                 ),
               ),
+
               const SizedBox(height: 12),
+
               Text(
                 description,
                 style: const TextStyle(fontSize: 16, color: Colors.black54),
               ),
+
               const SizedBox(height: 16),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [

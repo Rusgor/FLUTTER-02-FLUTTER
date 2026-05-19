@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_02_flutter/widgets_main_screen.dart';
+import 'package:go_router/go_router.dart';
+import 'package:flutter_02_flutter/app_router.dart';
 
 void main() {
   runApp(const FlutterWidgetsApp());
@@ -10,7 +11,10 @@ class FlutterWidgetsApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: HomeScreen());
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      routerConfig: appRouter,
+    );
   }
 }
 
@@ -29,15 +33,7 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            FeatureCard(
-              title: 'Widgets',
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute<Widget>(
-                  builder: (context) => WidgetsScreen(),
-                ),
-              ),
-            ),
+            FeatureCard(title: 'Widgets', onTap: () => context.go('/widgets')),
           ],
         ),
       ),
@@ -69,11 +65,7 @@ class FeatureCard extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              Icon(
-                Icons.arrow_forward_ios,
-                size: 16,
-                color: Colors.grey.shade600,
-              ),
+              Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
             ],
           ),
         ),
