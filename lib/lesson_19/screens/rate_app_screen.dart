@@ -1,6 +1,7 @@
 import '../bloc/rate_app_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RateAppScreen extends StatelessWidget {
@@ -21,58 +22,82 @@ class RateAppScreen extends StatelessWidget {
                 backgroundColor: Colors.transparent,
                 elevation: 0,
 
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 24,
+                ),
+
                 content: Container(
-                  width: 390,
-                  height: 60,
+                  height: 114,
 
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 14,
+                    horizontal: 24,
+                    vertical: 27,
                   ),
 
                   decoration: BoxDecoration(
-                    color: const Color(0xFF41A6F4),
-                    borderRadius: BorderRadius.circular(10),
+                    color: const Color(0xFF656565),
+
+                    borderRadius: BorderRadius.circular(20),
 
                     boxShadow: const [
                       BoxShadow(
-                        color: Color.fromRGBO(130, 127, 127, 0.25),
-                        offset: Offset(0, 4),
+                        color: Colors.black26,
                         blurRadius: 4,
+                        offset: Offset(0, 4),
                       ),
                     ],
                   ),
 
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 18,
+                      vertical: 14,
+                    ),
 
-                    children: [
-                      Text('😊', style: TextStyle(fontSize: 18)),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF41A6F4),
 
-                      SizedBox(width: 8),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
 
-                      Icon(Icons.star, color: Colors.white, size: 18),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
 
-                      SizedBox(width: 10),
-
-                      Text(
-                        'Rating submitted successfully',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'Montserrat',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
+                      children: [
+                        SvgPicture.asset(
+                          'assets/icons/vector_star.svg',
+                          width: 18,
+                          height: 18,
                         ),
-                      ),
 
-                      SizedBox(width: 10),
+                        const SizedBox(width: 8),
 
-                      Icon(Icons.star, color: Colors.white, size: 18),
+                        const Flexible(
+                          child: Text(
+                            'Rating submitted successfully',
 
-                      SizedBox(width: 8),
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.center,
 
-                      Text('😊', style: TextStyle(fontSize: 18)),
-                    ],
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              fontFamily: 'Montserrat',
+                            ),
+                          ),
+                        ),
+
+                        const SizedBox(width: 8),
+
+                        SvgPicture.asset(
+                          'assets/icons/vector_star.svg',
+                          width: 18,
+                          height: 18,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -92,7 +117,7 @@ class _RateAppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFA8D5F0),
+      backgroundColor: const Color(0xFFA5E0FF),
 
       appBar: AppBar(
         backgroundColor: const Color(0xFF163B7A),
@@ -101,7 +126,7 @@ class _RateAppView extends StatelessWidget {
 
         leading: IconButton(
           onPressed: () {
-            context.pop();
+            context.go('/');
           },
 
           icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white),
@@ -109,250 +134,318 @@ class _RateAppView extends StatelessWidget {
 
         title: const Text(
           'Flutter lab',
+
           style: TextStyle(
             color: Colors.white,
-            fontWeight: FontWeight.w500,
-            fontSize: 24,
+            fontWeight: FontWeight.w600,
+            fontSize: 22,
+            fontFamily: 'Montserrat',
           ),
         ),
       ),
 
-      body: Center(
+      body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.only(top: 48),
 
           child: BlocBuilder<RateAppCubit, RateAppState>(
             builder: (context, state) {
-              return Container(
-                width: double.infinity,
+              return Column(
+                children: [
+                  Container(
+                    width: double.infinity,
 
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 34,
-                ),
-
-                decoration: BoxDecoration(
-                  color: const Color(0xFF6EB6F2),
-                  borderRadius: BorderRadius.circular(24),
-
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.18),
-                      blurRadius: 10,
-                      offset: const Offset(0, 5),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 32,
                     ),
-                  ],
-                ),
 
-                child: state.status == RateStatus.success
-                    ? Column(
-                        mainAxisSize: MainAxisSize.min,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF72C1FA),
 
-                        children: [
-                          const Text(
-                            'You rated the app',
-                            textAlign: TextAlign.center,
+                      borderRadius: BorderRadius.circular(20),
 
-                            style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.w700,
-                              color: Color(0xFF163B7A),
-                            ),
-                          ),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 4,
+                          offset: Offset(0, 4),
+                        ),
+                      ],
+                    ),
 
-                          const SizedBox(height: 28),
+                    child: state.status == RateStatus.success
+                        ? Column(
+                            mainAxisSize: MainAxisSize.min,
 
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-
-                            children: List.generate(5, (index) {
-                              return const Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 4),
-
-                                child: Icon(
-                                  Icons.star,
-                                  color: Color(0xFFFFE3A3),
-                                  size: 42,
-                                ),
-                              );
-                            }),
-                          ),
-
-                          const SizedBox(height: 36),
-
-                          SizedBox(
-                            width: double.infinity,
-                            height: 62,
-
-                            child: ElevatedButton(
-                              onPressed: () {
-                                context.read<RateAppCubit>().resetRating();
-                              },
-
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xFF163B7A),
-                                elevation: 6,
-                                shadowColor: Colors.black54,
-
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(14),
-                                ),
-                              ),
-
-                              child: const Text(
-                                'Rate again',
-                                style: TextStyle(
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      )
-                    : Column(
-                        mainAxisSize: MainAxisSize.min,
-
-                        children: [
-                          const Text(
-                            'How would you rate the app?',
-                            textAlign: TextAlign.center,
-
-                            style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.w700,
-                              color: Color(0xFF163B7A),
-                            ),
-                          ),
-
-                          const SizedBox(height: 32),
-
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-
-                            children: List.generate(5, (index) {
-                              final starIndex = index + 1;
-
-                              return IconButton(
-                                onPressed: state.status == RateStatus.loading
-                                    ? null
-                                    : () {
-                                        context.read<RateAppCubit>().setRating(
-                                          starIndex,
-                                        );
-                                      },
-
-                                icon: Icon(
-                                  state.rating >= starIndex
-                                      ? Icons.star
-                                      : Icons.star_border,
-
-                                  color: const Color(0xFFFFF2B3),
-                                  size: 44,
-                                ),
-                              );
-                            }),
-                          ),
-
-                          const SizedBox(height: 36),
-
-                          Row(
                             children: [
-                              Expanded(
-                                child: SizedBox(
-                                  height: 62,
+                              const Text(
+                                'You rated the app',
 
-                                  child: ElevatedButton(
-                                    onPressed:
-                                        state.rating == 0 ||
-                                            state.status == RateStatus.loading
-                                        ? null
-                                        : () {
-                                            context
-                                                .read<RateAppCubit>()
-                                                .submitRating();
-                                          },
+                                textAlign: TextAlign.center,
 
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: const Color(0xFF163B7A),
-                                      elevation: 6,
-                                      shadowColor: Colors.black54,
-
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(14),
-                                      ),
-                                    ),
-
-                                    child: state.status == RateStatus.loading
-                                        ? const SizedBox(
-                                            height: 28,
-                                            width: 28,
-
-                                            child: CircularProgressIndicator(
-                                              strokeWidth: 3,
-                                              color: Colors.white,
-                                            ),
-                                          )
-                                        : const Text(
-                                            'Submit rating',
-                                            style: TextStyle(
-                                              fontSize: 22,
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                  ),
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xFF1B3D70),
+                                  fontFamily: 'Montserrat',
                                 ),
                               ),
 
-                              const SizedBox(width: 16),
+                              const SizedBox(height: 24),
 
-                              Expanded(
-                                child: SizedBox(
-                                  height: 62,
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
 
-                                  child: ElevatedButton.icon(
-                                    onPressed:
-                                        state.status == RateStatus.loading
-                                        ? null
-                                        : () {
-                                            context
-                                                .read<RateAppCubit>()
-                                                .resetRating();
-                                          },
+                                children: List.generate(5, (index) {
+                                  final starIndex = index + 1;
 
-                                    icon: const Icon(
-                                      Icons.refresh,
+                                  return Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 10,
+                                    ),
+
+                                    child: Icon(
+                                      state.rating >= starIndex
+                                          ? Icons.star
+                                          : Icons.star_border,
+
+                                      color: const Color(0xFFFEE2B6),
+                                      size: 34,
+                                    ),
+                                  );
+                                }),
+                              ),
+
+                              const SizedBox(height: 24),
+
+                              SizedBox(
+                                width: double.infinity,
+                                height: 46,
+
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    context.read<RateAppCubit>().resetRating();
+                                  },
+
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: const Color(0xFF1B3D70),
+
+                                    elevation: 4,
+
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 30,
+                                      vertical: 13,
+                                    ),
+                                  ),
+
+                                  child: const Text(
+                                    'Rate again',
+
+                                    style: TextStyle(
                                       color: Colors.white,
-                                      size: 24,
-                                    ),
-
-                                    label: const Text(
-                                      'Reset rating',
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: const Color(0xFF6EB6F2),
-                                      elevation: 6,
-                                      shadowColor: Colors.black45,
-
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(14),
-                                      ),
+                                      fontFamily: 'Montserrat',
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
                                     ),
                                   ),
                                 ),
                               ),
                             ],
+                          )
+                        : Column(
+                            mainAxisSize: MainAxisSize.min,
+
+                            children: [
+                              const Text(
+                                'How would you rate the app?',
+
+                                textAlign: TextAlign.center,
+
+                                style: TextStyle(
+                                  color: Color(0xFF1B3D70),
+                                  fontFamily: 'Montserrat',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+
+                              const SizedBox(height: 24),
+
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 12,
+                                ),
+
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+
+                                  children: List.generate(5, (index) {
+                                    final starIndex = index + 1;
+
+                                    return Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 10,
+                                      ),
+
+                                      child: IconButton(
+                                        padding: EdgeInsets.zero,
+
+                                        constraints: const BoxConstraints(),
+
+                                        onPressed:
+                                            state.status == RateStatus.loading
+                                            ? null
+                                            : () {
+                                                context
+                                                    .read<RateAppCubit>()
+                                                    .setRating(starIndex);
+                                              },
+
+                                        icon: Icon(
+                                          state.rating >= starIndex
+                                              ? Icons.star
+                                              : Icons.star_border,
+
+                                          color: const Color(0xFFFEE2B6),
+
+                                          size: 34,
+                                        ),
+                                      ),
+                                    );
+                                  }),
+                                ),
+                              ),
+
+                              const SizedBox(height: 24),
+
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: SizedBox(
+                                      height: 46,
+
+                                      child: ElevatedButton(
+                                        onPressed:
+                                            state.rating == 0 ||
+                                                state.status ==
+                                                    RateStatus.loading
+                                            ? null
+                                            : () {
+                                                context
+                                                    .read<RateAppCubit>()
+                                                    .submitRating();
+                                              },
+
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: const Color(
+                                            0xFF1B3D70,
+                                          ),
+
+                                          elevation: 4,
+
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                              10,
+                                            ),
+                                          ),
+
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 30,
+                                            vertical: 13,
+                                          ),
+                                        ),
+
+                                        child:
+                                            state.status == RateStatus.loading
+                                            ? const SizedBox(
+                                                width: 22,
+                                                height: 22,
+
+                                                child:
+                                                    CircularProgressIndicator(
+                                                      color: Colors.white,
+                                                      strokeWidth: 2.5,
+                                                    ),
+                                              )
+                                            : const Text(
+                                                'Submit rating',
+
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontFamily: 'Montserrat',
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                      ),
+                                    ),
+                                  ),
+
+                                  const SizedBox(width: 16),
+
+                                  Expanded(
+                                    child: SizedBox(
+                                      height: 46,
+
+                                      child: ElevatedButton.icon(
+                                        onPressed:
+                                            state.status == RateStatus.loading
+                                            ? null
+                                            : () {
+                                                context
+                                                    .read<RateAppCubit>()
+                                                    .resetRating();
+                                              },
+
+                                        icon: const Icon(
+                                          Icons.refresh,
+                                          color: Colors.white,
+                                          size: 18,
+                                        ),
+
+                                        label: const Text(
+                                          'Reset rating',
+
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: 'Montserrat',
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: const Color(
+                                            0xFF41A6F4,
+                                          ),
+
+                                          elevation: 4,
+
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                              10,
+                                            ),
+                                          ),
+
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 22,
+                                            vertical: 13,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                  ),
+                ],
               );
             },
           ),
