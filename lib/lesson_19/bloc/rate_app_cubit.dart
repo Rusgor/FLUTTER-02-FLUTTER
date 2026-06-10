@@ -31,6 +31,12 @@ class RateAppCubit extends Cubit<RateAppState> {
     emit(RateAppState.initial());
   }
 
+  void resetIfNotSubmitted() {
+    if (state.status != RateStatus.success) {
+      emit(RateAppState.initial());
+    }
+  }
+
   Future<void> submitRating() async {
     emit(state.copyWith(status: RateStatus.loading));
 
