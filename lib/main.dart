@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'lesson_19/bloc/rate_app_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'lesson_19/widgets/success_snack_bar.dart';
 import 'package:flutter_02_flutter/app_router.dart';
 
 void main() {
@@ -11,9 +14,13 @@ class FlutterWidgetsApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      routerConfig: appRouter,
+    return BlocProvider(
+      create: (_) => RateAppCubit(),
+
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        routerConfig: appRouter,
+      ),
     );
   }
 }
@@ -37,13 +44,34 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            FeatureCard(title: 'Widgets', onTap: () => context.go('/widgets')),
+            FeatureCard(
+              title: 'Widgets',
+              onTap: () => context.push('/widgets'),
+            ),
 
             const SizedBox(height: 12),
 
             FeatureCard(
               title: 'HW-18. State managment (Lesson 18)',
-              onTap: () => context.go('/state-management'),
+              onTap: () => context.push('/state-management'),
+            ),
+
+            FeatureCard(
+              title: 'HW-19. Rate screen (Lesson 19)',
+              onTap: () async {
+                final result = await context.push<bool>('/rate-app');
+
+                if (result == true && context.mounted) {
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(const SuccessSnackBar());
+                }
+              },
+            ),
+
+            FeatureCard(
+              title: 'HW-21. Explicit Animations (Lesson 21)',
+              onTap: () => context.push('/explicit-animation'),
             ),
           ],
         ),

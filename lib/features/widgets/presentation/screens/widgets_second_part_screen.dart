@@ -21,7 +21,7 @@ class WidgetsSecondPartScreen extends StatelessWidget {
                 'Взаємодія віджетів та компонування (lesson_13)',
 
             // GO ROUTER
-            onTap: () => context.go('/custom-widgets'),
+            onTap: () => context.push('/custom-widgets'),
           ),
 
           WidgetExampleCard(
@@ -31,7 +31,7 @@ class WidgetsSecondPartScreen extends StatelessWidget {
                 'when to use each one.',
 
             // GO ROUTER
-            onTap: () => context.go('/widget-types'),
+            onTap: () => context.push('/widget-types'),
           ),
 
           WidgetExampleCard(
@@ -41,7 +41,7 @@ class WidgetsSecondPartScreen extends StatelessWidget {
                 'elements with material design ink effects.',
 
             // GO ROUTER
-            onTap: () => context.go('/gesture'),
+            onTap: () => context.push('/gesture'),
           ),
 
           WidgetExampleCard(
@@ -51,7 +51,7 @@ class WidgetsSecondPartScreen extends StatelessWidget {
                 'and form integration capabilities.',
 
             // GO ROUTER
-            onTap: () => context.go('/text-fields'),
+            onTap: () => context.push('/text-fields'),
           ),
 
           WidgetExampleCard(
@@ -59,7 +59,7 @@ class WidgetsSecondPartScreen extends StatelessWidget {
             description: 'Widgets for displaying images',
 
             // GO ROUTER
-            onTap: () => context.go('/images'),
+            onTap: () => context.push('/images'),
           ),
         ],
       ),

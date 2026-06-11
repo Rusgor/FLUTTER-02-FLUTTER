@@ -21,7 +21,7 @@ class StateManagmentBaseScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             ElevatedButton(
-              onPressed: () => context.go('/homework-cubit'),
+              onPressed: () => context.push('/homework-cubit'),
               child: const Text(
                 'Cubit Example',
                 style: TextStyle(
@@ -42,7 +42,7 @@ class StateManagmentBaseScreen extends StatelessWidget {
             const SizedBox(height: 16),
 
             ElevatedButton(
-              onPressed: () => context.go('/homework-bloc'),
+              onPressed: () => context.push('/homework-bloc'),
               child: const Text(
                 'Bloc Example',
                 style: TextStyle(

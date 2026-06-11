@@ -4,6 +4,8 @@ import 'package:flutter_02_flutter/widgets_main_screen.dart';
 import 'package:flutter_02_flutter/lesson_11/lesson_11.dart';
 import 'package:flutter_02_flutter/lesson_12/lesson_12.dart';
 import 'package:flutter_02_flutter/lesson_13/lesson_13.dart';
+import '../lesson_21/screens/explicit_animation_screen.dart';
+import 'package:flutter_02_flutter/lesson_19/screens/rate_app_screen.dart';
 import 'package:flutter_02_flutter/lesson_18/state_managment_base_screen.dart';
 import 'package:flutter_02_flutter/lesson_18/homework_bloc/homework_bloc_screen.dart';
 import 'package:flutter_02_flutter/lesson_18/homework_cubit/homework_cubit_screen.dart';
@@ -101,6 +103,11 @@ final GoRouter appRouter = GoRouter(
       builder: (context, state) => const HomeworkBlocScreen(),
     ),
 
+    GoRoute(
+      path: '/rate-app',
+      builder: (context, state) => const RateAppScreen(),
+    ),
+
     // =========================
     // PART 1 EXAMPLES
     // =========================
@@ -190,6 +197,14 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/images',
       builder: (context, state) => const ImageExampleScreen(),
+    ),
+
+    GoRoute(
+      path: '/explicit-animation',
+
+      builder: (context, state) {
+        return const ExplicitAnimationScreen();
+      },
     ),
   ],
 );

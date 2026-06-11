@@ -23,7 +23,7 @@ class WidgetsScreen extends StatelessWidget {
                   'Column, Expanded, Buttons, Scroll',
 
               // GO ROUTER
-              onTap: () => context.go('/lesson11'),
+              onTap: () => context.push('/lesson11'),
             ),
 
             NavigationCard(
@@ -34,7 +34,7 @@ class WidgetsScreen extends StatelessWidget {
                   'TextFields & TextFormFields',
 
               // GO ROUTER
-              onTap: () => context.go('/widgets-part-2'),
+              onTap: () => context.push('/widgets-part-2'),
             ),
           ],
         ),

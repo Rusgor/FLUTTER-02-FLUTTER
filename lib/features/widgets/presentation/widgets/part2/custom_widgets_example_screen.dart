@@ -36,7 +36,7 @@ class CustomWidgetsExampleScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
 
                   // GO ROUTER
-                  onTap: () => context.go('/lesson12'),
+                  onTap: () => context.push('/lesson12'),
 
                   child: const Padding(
                     padding: EdgeInsets.symmetric(vertical: 18),
@@ -68,7 +68,7 @@ class CustomWidgetsExampleScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
 
                   // GO ROUTER
-                  onTap: () => context.go('/lesson13'),
+                  onTap: () => context.push('/lesson13'),
 
                   child: const Padding(
                     padding: EdgeInsets.symmetric(vertical: 18),
