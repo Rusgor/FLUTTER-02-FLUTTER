@@ -13,6 +13,14 @@ class RateAppState {
     this.status = RateStatus.initial,
   });
 
+  factory RateAppState.initial() {
+    return const RateAppState(
+      rating: 0,
+      comment: '',
+      status: RateStatus.initial,
+    );
+  }
+
   RateAppState copyWith({int? rating, String? comment, RateStatus? status}) {
     return RateAppState(
       rating: rating ?? this.rating,
@@ -31,6 +39,12 @@ class RateAppCubit extends Cubit<RateAppState> {
 
   void updateComment(String value) {
     emit(state.copyWith(comment: value));
+  }
+
+  void resetIfNotSubmitted() {
+    if (state.status != RateStatus.success) {
+      emit(RateAppState.initial());
+    }
   }
 
   Future<void> submitRating() async {
