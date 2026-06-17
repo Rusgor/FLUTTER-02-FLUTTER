@@ -73,6 +73,13 @@ class HomeScreen extends StatelessWidget {
               title: 'HW-21. Explicit Animations (Lesson 21)',
               onTap: () => context.push('/explicit-animation'),
             ),
+
+            const SizedBox(height: 12),
+
+            FeatureCard(
+              title: 'HW-22. Error Handling (Lesson 22)',
+              onTap: () => context.push('/error-handling'),
+            ),
           ],
         ),
       ),

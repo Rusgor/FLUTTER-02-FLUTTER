@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:flutter_02_flutter/main.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_02_flutter/widgets_main_screen.dart';
 import 'package:flutter_02_flutter/lesson_11/lesson_11.dart';
 import 'package:flutter_02_flutter/lesson_12/lesson_12.dart';
@@ -26,9 +27,12 @@ import 'package:flutter_02_flutter/features/widgets/presentation/widgets/part1/e
 import 'package:flutter_02_flutter/features/widgets/presentation/widgets/part1/container_example_screen.dart';
 import 'package:flutter_02_flutter/features/widgets/presentation/widgets/part1/sized_box_example_screen.dart';
 import 'package:flutter_02_flutter/features/widgets/presentation/widgets/part2/text_field_example_screen.dart';
+import 'package:flutter_02_flutter/features/error_handling_homework/data/repository/fake_user_repository.dart';
+import 'package:flutter_02_flutter/features/error_handling_homework/presentation/cubit/user_profile_cubit.dart';
 import 'package:flutter_02_flutter/features/widgets/presentation/widgets/part2/widget_types_example_screen.dart';
 import 'package:flutter_02_flutter/features/widgets/presentation/widgets/part2/custom_widgets_example_screen.dart';
 import 'package:flutter_02_flutter/features/widgets/presentation/widgets/part1/progress_indicators_example_screen.dart';
+import 'package:flutter_02_flutter/features/error_handling_homework/presentation/ui/screens/user_profile_homework_screen.dart';
 
 final GoRouter appRouter = GoRouter(
   initialLocation: '/',
@@ -204,6 +208,17 @@ final GoRouter appRouter = GoRouter(
 
       builder: (context, state) {
         return const ExplicitAnimationScreen();
+      },
+    ),
+
+    GoRoute(
+      path: '/error-handling',
+      builder: (context, state) {
+        return BlocProvider(
+          create: (_) =>
+              UserProfileCubit(FakeUserRepository())..loadUserProfile(),
+          child: const UserProfileHomeworkScreen(),
+        );
       },
     ),
   ],
