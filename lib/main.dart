@@ -80,6 +80,13 @@ class HomeScreen extends StatelessWidget {
               title: 'HW-22. Error Handling (Lesson 22)',
               onTap: () => context.push('/error-handling'),
             ),
+
+            const SizedBox(height: 12),
+
+            FeatureCard(
+              title: 'HW-25. REST API & JSON (Lesson 25)',
+              onTap: () => context.push('/lesson-25'),
+            ),
           ],
         ),
       ),
