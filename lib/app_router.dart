@@ -9,6 +9,7 @@ import '../lesson_21/screens/explicit_animation_screen.dart';
 import 'package:flutter_02_flutter/lesson_19/screens/rate_app_screen.dart';
 import 'package:flutter_02_flutter/lesson_18/state_managment_base_screen.dart';
 import 'package:flutter_02_flutter/lesson_18/homework_bloc/homework_bloc_screen.dart';
+import 'package:flutter_02_flutter/lesson_25/presentation/screens/cheque_screen.dart';
 import 'package:flutter_02_flutter/lesson_18/homework_cubit/homework_cubit_screen.dart';
 import 'package:flutter_02_flutter/features/widgets/presentation/widgets/part1/row_example_screen.dart';
 import 'package:flutter_02_flutter/features/widgets/presentation/screens/widgets_first_part_screen.dart';
@@ -220,6 +221,10 @@ final GoRouter appRouter = GoRouter(
           child: const UserProfileHomeworkScreen(),
         );
       },
+    ),
+    GoRoute(
+      path: '/lesson-25',
+      builder: (context, state) => const ChequeScreen(),
     ),
   ],
 );
