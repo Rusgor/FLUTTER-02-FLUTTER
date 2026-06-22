@@ -29,18 +29,18 @@ class _ExplicitAnimationScreenState extends State<ExplicitAnimationScreen>
       TweenSequenceItem(
         tween: Tween<double>(
           begin: 0,
-          end: -560,
+          end: -628,
         ).chain(CurveTween(curve: Curves.decelerate)),
         weight: 12,
       ),
 
       // HANG
-      TweenSequenceItem(tween: ConstantTween<double>(-560), weight: 12),
+      TweenSequenceItem(tween: ConstantTween<double>(-628), weight: 12),
 
       // FALL DOWN
       TweenSequenceItem(
         tween: Tween<double>(
-          begin: -560,
+          begin: -628,
           end: 0,
         ).chain(CurveTween(curve: Curves.easeInCubic)),
         weight: 12,
@@ -85,38 +85,32 @@ class _ExplicitAnimationScreenState extends State<ExplicitAnimationScreen>
     ]).animate(_controller);
 
     _rotationAnimation = TweenSequence<double>([
-      // START — NO ROTATION
-      TweenSequenceItem(tween: ConstantTween<double>(0), weight: 12),
+      // Невелика пауза перед стартом
+      TweenSequenceItem(tween: ConstantTween<double>(0), weight: 6),
 
-      // ROTATE UP
+      // Повільний початок обертання
       TweenSequenceItem(
         tween: Tween<double>(
           begin: 0,
-          end: 1.5,
-        ).chain(CurveTween(curve: Curves.decelerate)),
-        weight: 24,
+          end: 0.75,
+        ).chain(CurveTween(curve: Curves.easeInOut)),
+        weight: 28,
       ),
 
-      // SPIN ON TOP
+      // Докручування майже біля вершини
       TweenSequenceItem(
         tween: Tween<double>(
-          begin: 1.5,
-          end: 3,
-        ).chain(CurveTween(curve: Curves.linear)),
+          begin: 0.75,
+          end: 1.0,
+        ).chain(CurveTween(curve: Curves.easeOut)),
         weight: 18,
       ),
 
-      // ROTATE DOWN
-      TweenSequenceItem(
-        tween: Tween<double>(
-          begin: 3,
-          end: 3,
-        ).chain(CurveTween(curve: Curves.easeInCubic)),
-        weight: 12,
-      ),
+      // Повне зависання
+      TweenSequenceItem(tween: ConstantTween<double>(1), weight: 18),
 
-      // FULL STOP
-      TweenSequenceItem(tween: ConstantTween<double>(4), weight: 50),
+      // Падіння
+      TweenSequenceItem(tween: ConstantTween<double>(1), weight: 30),
     ]).animate(_controller);
   }
 
@@ -132,7 +126,11 @@ class _ExplicitAnimationScreenState extends State<ExplicitAnimationScreen>
       backgroundColor: const Color(0xFF8DB9E8),
       appBar: AppBar(
         backgroundColor: const Color(0xFF2196F3),
-        title: const Text('Animated Ball'),
+        centerTitle: true,
+        title: const Text(
+          'Animated Ball',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+        ),
       ),
       body: Stack(
         alignment: const Alignment(0, 0.77),
@@ -164,7 +162,7 @@ class _ExplicitAnimationScreenState extends State<ExplicitAnimationScreen>
             },
             child: Transform.translate(
               offset: const Offset(0, 2),
-              child: const Text('⚽', style: TextStyle(fontSize: 100)),
+              child: const Text('⚽', style: TextStyle(fontSize: 78)),
             ),
           ),
         ],
