@@ -21,7 +21,6 @@ class _ExplicitAnimationScreenState extends State<ExplicitAnimationScreen>
 
     _controller = AnimationController(
       vsync: this,
-
       duration: const Duration(seconds: 6),
     )..repeat();
 
@@ -30,22 +29,20 @@ class _ExplicitAnimationScreenState extends State<ExplicitAnimationScreen>
       TweenSequenceItem(
         tween: Tween<double>(
           begin: 0,
-          end: -670,
-        ).chain(CurveTween(curve: Curves.easeOut)),
-
+          end: -628,
+        ).chain(CurveTween(curve: Curves.decelerate)),
         weight: 12,
       ),
 
       // HANG
-      TweenSequenceItem(tween: ConstantTween<double>(-670), weight: 12),
+      TweenSequenceItem(tween: ConstantTween<double>(-628), weight: 12),
 
       // FALL DOWN
       TweenSequenceItem(
         tween: Tween<double>(
-          begin: -670,
+          begin: -628,
           end: 0,
-        ).chain(CurveTween(curve: Curves.easeIn)),
-
+        ).chain(CurveTween(curve: Curves.easeInCubic)),
         weight: 12,
       ),
 
@@ -54,8 +51,7 @@ class _ExplicitAnimationScreenState extends State<ExplicitAnimationScreen>
         tween: Tween<double>(
           begin: 0,
           end: -150,
-        ).chain(CurveTween(curve: Curves.easeOut)),
-
+        ).chain(CurveTween(curve: Curves.decelerate)),
         weight: 8,
       ),
 
@@ -63,8 +59,7 @@ class _ExplicitAnimationScreenState extends State<ExplicitAnimationScreen>
         tween: Tween<double>(
           begin: -150,
           end: 0,
-        ).chain(CurveTween(curve: Curves.easeIn)),
-
+        ).chain(CurveTween(curve: Curves.easeInCubic)),
         weight: 8,
       ),
 
@@ -73,8 +68,7 @@ class _ExplicitAnimationScreenState extends State<ExplicitAnimationScreen>
         tween: Tween<double>(
           begin: 0,
           end: -55,
-        ).chain(CurveTween(curve: Curves.easeOut)),
-
+        ).chain(CurveTween(curve: Curves.decelerate)),
         weight: 6,
       ),
 
@@ -82,8 +76,7 @@ class _ExplicitAnimationScreenState extends State<ExplicitAnimationScreen>
         tween: Tween<double>(
           begin: -55,
           end: 0,
-        ).chain(CurveTween(curve: Curves.easeIn)),
-
+        ).chain(CurveTween(curve: Curves.easeInCubic)),
         weight: 6,
       ),
 
@@ -92,48 +85,38 @@ class _ExplicitAnimationScreenState extends State<ExplicitAnimationScreen>
     ]).animate(_controller);
 
     _rotationAnimation = TweenSequence<double>([
-      // START — NO ROTATION
-      TweenSequenceItem(tween: ConstantTween<double>(0), weight: 12),
+      // Невелика пауза перед стартом
+      TweenSequenceItem(tween: ConstantTween<double>(0), weight: 6),
 
-      // ROTATE UP
+      // Повільний початок обертання
       TweenSequenceItem(
         tween: Tween<double>(
           begin: 0,
-          end: 1.5,
-        ).chain(CurveTween(curve: Curves.easeOut)),
-
-        weight: 24,
+          end: 0.75,
+        ).chain(CurveTween(curve: Curves.easeInOut)),
+        weight: 28,
       ),
 
-      // SPIN ON TOP
+      // Докручування майже біля вершини
       TweenSequenceItem(
         tween: Tween<double>(
-          begin: 1.5,
-          end: 3,
-        ).chain(CurveTween(curve: Curves.linear)),
-
+          begin: 0.75,
+          end: 1.0,
+        ).chain(CurveTween(curve: Curves.easeOut)),
         weight: 18,
       ),
 
-      // ROTATE DOWN
-      TweenSequenceItem(
-        tween: Tween<double>(
-          begin: 3,
-          end: 3,
-        ).chain(CurveTween(curve: Curves.easeIn)),
+      // Повне зависання
+      TweenSequenceItem(tween: ConstantTween<double>(1), weight: 18),
 
-        weight: 12,
-      ),
-
-      // FULL STOP
-      TweenSequenceItem(tween: ConstantTween<double>(4), weight: 50),
+      // Падіння
+      TweenSequenceItem(tween: ConstantTween<double>(1), weight: 30),
     ]).animate(_controller);
   }
 
   @override
   void dispose() {
     _controller.dispose();
-
     super.dispose();
   }
 
@@ -141,53 +124,45 @@ class _ExplicitAnimationScreenState extends State<ExplicitAnimationScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF8DB9E8),
-
       appBar: AppBar(
         backgroundColor: const Color(0xFF2196F3),
-
-        title: const Text('Animated Ball'),
+        centerTitle: true,
+        title: const Text(
+          'Animated Ball',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+        ),
       ),
-
       body: Stack(
-        alignment: Alignment.bottomCenter,
+        alignment: const Alignment(0, 0.77),
 
         children: [
           Align(
             alignment: Alignment.bottomCenter,
-
             child: Container(
               height: 90,
-
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-
                   colors: [Color(0xFF81C784), Color(0xFF2E7D32)],
                 ),
               ),
             ),
           ),
-
           AnimatedBuilder(
             animation: _controller,
-
             builder: (context, child) {
               return Transform.translate(
                 offset: Offset(0, _verticalAnimation.value),
-
                 child: RotationTransition(
                   turns: _rotationAnimation,
-
                   child: child,
                 ),
               );
             },
-
             child: Transform.translate(
               offset: const Offset(0, 2),
-
-              child: const Text('⚽', style: TextStyle(fontSize: 100)),
+              child: const Text('⚽', style: TextStyle(fontSize: 78)),
             ),
           ),
         ],
